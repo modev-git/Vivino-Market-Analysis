@@ -11,11 +11,14 @@ def get_db_path() -> Path:
 def execute_sql_file(sql_file_path: str) -> list:
     db_path = get_db_path()
 
-    with open(sql_file_path, 'r') as file:
+    with open(sql_file_path, 'r') as file: 
         query = file.read()
 
-    with sqlite3.connect(db_path) as conn:
-        cursor = conn.cursor
+    with sqlite3.connect(db_path) as conn: 
+        # Establishes connection to database
+        cursor = conn.cursor()
+        # Maps column names from DB to results for easier fetching
+        conn.row_factory = sqlite3.Row
         cursor.execute(query)
         results = cursor.fetchall()
 
