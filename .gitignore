@@ -10,3 +10,6 @@ __pycache__/
 # Ignore virtual environments (if you create one later)
 venv/
 env/ 
+
+# Ignore nbformat file
+4.2.0
