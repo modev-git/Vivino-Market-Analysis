@@ -1,5 +1,6 @@
 import plotly.graph_objects as go
 
+# 1st question visualization
 def plot_top_10_bar(top_10_data: list):
     # Unpack the data
     names = [row[0] for row in top_10_data]
