@@ -21,7 +21,11 @@ def plot_top_10_bar(top_10_data: list):
         orientation='h',
         marker=dict(
             color=counts,
-            colorscale='Picnic',
+            colorscale= [
+                [0, '#f2e6e6'],   # Lightest (Low Trust)
+                [0.5, '#a63a50'], # Middle
+                [1, '#590d22']    # Deep Burgundy (High Trust)
+        ],
             showscale=True,
             colorbar=dict(title='Total Reviews')
         ),
