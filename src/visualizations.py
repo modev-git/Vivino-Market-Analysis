@@ -4,6 +4,9 @@ import plotly.express as px
 
 # Highlight top 10 wines visualization
 def plot_top_10_bar(top_10_data: list):
+
+    top_10_data.sort(key=lambda x: x[2], reverse=True) # Sort by ratings_average
+
     # Unpack the data
     names = [row[0] for row in top_10_data]
     ratings = [row[1] for row in top_10_data]
