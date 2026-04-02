@@ -79,4 +79,4 @@ pip install -r requirements.txt
  Architectural Recommendation: In a production environment, this schema would be rejected. A specific wine_grapes junction table linking wine_id directly to grape_id is required to ensure ingredient-level accuracy and prevent many-to-many fan-out.
 
 ## Author
-Mohamed Toukane via BeCode 
+Mohamed Toukane  
