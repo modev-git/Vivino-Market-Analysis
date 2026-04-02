@@ -7,7 +7,7 @@ __pycache__/
 *.pyc
 .ipynb_checkpoints/
 
-# Ignore virtual environments (if you create one later)
+# Ignore virtual environments 
 venv/
 env/ 
 
