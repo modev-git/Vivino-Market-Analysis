@@ -1,6 +1,8 @@
 import plotly.graph_objects as go
+import pandas as pd
+import plotly.express as px 
 
-# 1st question visualization
+# Highlight top 10 wines visualization
 def plot_top_10_bar(top_10_data: list):
     # Unpack the data
     names = [row[0] for row in top_10_data]
@@ -37,4 +39,34 @@ def plot_top_10_bar(top_10_data: list):
         height=600
     )
 
+    return fig
+
+# Country leaderboard visualization
+def create_horizontal_leaderboard(data: dict, x_col: str, y_col: str, title_text: str):
+
+    # 1. Convert the data into a DataFrame
+    df = pd.DataFrame(data)
+
+    # 2. Instantiate the Base Geometry
+    fig = px.bar(
+        df,
+        x=x_col,
+        y=y_col,
+        orientation='h',
+        text='Average Rating',
+        color='Average Rating',
+        color_continuous_scale='Blues'
+    )
+
+    # 3. Enforce the Layout Architecture
+    fig.update_layout(
+        xaxis=dict(range=[0, 5]),
+        title=title_text,
+        coloraxis_showscale=False
+    )
+
+    # 4. Position the Labels
+    fig.update_traces(textposition='outside')
+
+    # 5. Render
     return fig
