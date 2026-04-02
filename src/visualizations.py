@@ -1,4 +1,6 @@
 import plotly.graph_objects as go
+import pandas as pd
+import plotly.express as px 
 
 # Highlight top 10 wines visualization
 def plot_top_10_bar(top_10_data: list):
@@ -40,23 +42,16 @@ def plot_top_10_bar(top_10_data: list):
     return fig
 
 # Country leaderboard visualization
-def plot_country_leaderboard(country_data: list):
+def create_horizontal_leaderboard(data: dict, x_col: str, y_col: str, title_text: str):
 
-        # 1. Build the DataFrame (Ascending order so Plotly stacks highest at the top)
-    data = {
-        'Country': ['Croatie', 'Suisse', 'Grèce', 'Roumanie', 'Argentine', 'Chili', 'Italie', 
-                    'Espagne', 'Portugal', 'France', 'Afrique du Sud', 'Australie', 'Hongrie', 
-                    'Moldavie', 'États-Unis', 'Allemagne', 'Israël'],
-        'Average Rating': [4.3, 4.35, 4.4, 4.4, 4.42, 4.43, 4.43, 4.44, 4.44, 4.45, 4.46, 
-                        4.46, 4.47, 4.48, 4.49, 4.5, 4.5]
-    }
+    # 1. Convert the data into a DataFrame
     df = pd.DataFrame(data)
 
     # 2. Instantiate the Base Geometry
     fig = px.bar(
         df,
-        x='Average Rating',
-        y='Country',
+        x=x_col,
+        y=y_col,
         orientation='h',
         text='Average Rating',
         color='Average Rating',
@@ -66,7 +61,7 @@ def plot_country_leaderboard(country_data: list):
     # 3. Enforce the Layout Architecture
     fig.update_layout(
         xaxis=dict(range=[0, 5]),
-        title='Global Leaderboard: Average Wine Rating',
+        title=title_text,
         coloraxis_showscale=False
     )
 
@@ -74,4 +69,4 @@ def plot_country_leaderboard(country_data: list):
     fig.update_traces(textposition='outside')
 
     # 5. Render
-    fig.show()
+    return fig
